@@ -180,6 +180,6 @@ static const struct luaL_reg xxtea[] = {
 
 /* register library */
 LUALIB_API int luaopen_xxtea( lua_State *L ){
-  luaL_openlib( L, "xxtea", xxtea, 0 );
-  return 1;
+	luaL_openlib( L, "xxtea", xxtea, 0 );
+	return 1;
 }
