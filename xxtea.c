@@ -162,6 +162,8 @@ static int decrypt( lua_State *L )
 	xxtea_long ret_length;
 	unsigned char * result = xxtea_decrypt(text, textLength, key, keyLength, &ret_length);
 	lua_pushlstring(L, result, ret_length);
+	free(result);
+	
 	return 1;
 }
 
