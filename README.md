@@ -11,4 +11,4 @@ usage
     * local xxtea = require("xxtea")
     * local encrypted = xxtea.encrypte(data-to-be-encrypted, key)
     * local decrypted = xxtea.decrypte(data-to-be-decrypted, key)
-xxtea module for lua, implemented with C.
+
