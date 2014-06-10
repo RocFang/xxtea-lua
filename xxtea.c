@@ -155,12 +155,8 @@ static int decrypt( lua_State *L )
 	size_t keyLength;
 	const unsigned char *text = luaL_checklstring( L, 1, &textLength );
 	const unsigned char *key = luaL_checklstring( L, 2, &keyLength );
-
-	
-	//unsigned char *xxtea_decrypt(unsigned char *data, xxtea_long data_len, unsigned char *key, xxtea_long key_len, xxtea_long *ret_length)	
-	
 	xxtea_long ret_length;
-	unsigned char * result = xxtea_decrypt(text, textLength, key, keyLength, &ret_length);
+	unsigned char * result = xxtea_decrypt((unsigned char *)text, (xxtea_long)textLength, (unsigned char *)key, (xxtea_long)keyLength, &ret_length);
 	lua_pushlstring(L, result, ret_length);
 	free(result);
 	
@@ -169,9 +165,16 @@ static int decrypt( lua_State *L )
 
 static int encrypt( lua_State *L)
 {
-	
-	return 1;
+	size_t textLength;	
+	size_t keyLength;
+	const unsigned char *text = luaL_checklstring( L, 1, &textLength );
+        const unsigned char *key = luaL_checklstring( L, 2, &keyLength );
+	xxtea_long ret_length;
+	unsigned char * result = xxtea_encrypt((unsigned char *)text, (xxtea_long)textLength, (unsigned char *)key, (xxtea_long)keyLength, &ret_length);
+	lua_pushlstring(L, result, ret_length);
+	free(result);
 
+	return 1;
 }
 static const struct luaL_reg xxtea[] = {
 
